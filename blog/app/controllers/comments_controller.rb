@@ -3,9 +3,11 @@ class CommentsController < ApplicationController
 only: :destroy
 
   def create
-    @article = Article.find(params[:article_id])
-    @comment = @article.comments.create(comment_params)
-    redirect_to article_path(@article)
+    @comment = Comment.new(comment_params)
+    @comment.article_id = params[:article_id]
+    @comment.save
+
+    redirect_to article_path(@comment.article)
   end
 
   def destroy
