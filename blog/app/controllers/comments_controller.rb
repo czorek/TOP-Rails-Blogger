@@ -1,6 +1,5 @@
 class CommentsController < ApplicationController
-  http_basic_authenticate_with name: 'dhh', password: 'secret',
-only: :destroy
+  before_filter :require_login, except: [:create]  
 
   def create
     @comment = Comment.new(comment_params)

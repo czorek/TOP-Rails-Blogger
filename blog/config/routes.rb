@@ -10,7 +10,12 @@ Rails.application.routes.draw do
   end
   resources :tags
 
+  resources :authors
 
+  resources :author_sessions, only: [ :new, :create, :destroy]
+
+  get 'login'  => 'author_sessions#new'
+  get 'logout' => 'author_sessions#destroy'
   # You can have the root of your site routed with "root"
 
   # Example of regular route:
